@@ -1,0 +1,45 @@
+﻿using GraphQL.TMS.Application.CommonDtos;
+using GraphQL.TMS.Domain.ProjDbModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GraphQL.TMS.Application.Features.EmployeeManagement.Query.GetEmployeeById
+{
+    public class GetEmployeeByIdQueryDto
+    {
+        public int EmployeeId { get; set; }
+
+        public string FirstName { get; set; } = null!;
+
+        public string LastName { get; set; } = null!;
+
+        public string Email { get; set; } = null!;
+
+        public string? PhoneNumber { get; set; }
+
+        public DateOnly HireDate { get; set; } = new DateOnly();
+
+        public int? JobId { get; set; }
+
+        public int? DepartmentId { get; set; }
+
+        public decimal? Salary { get; set; }
+
+        public int? ManagerId { get; set; }
+
+        public int? TeamId { get; set; }
+
+        public int? RoleId { get; set; }
+
+        public DepartmentDto? Department { get; set; }
+
+        public JobDto? Job { get; set; }
+
+        public RoleDto? Role { get; set; }
+
+        public TeamDto? Team { get; set; }
+    }
+}
