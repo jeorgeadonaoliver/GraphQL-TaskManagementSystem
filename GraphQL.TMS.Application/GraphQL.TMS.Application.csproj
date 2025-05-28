@@ -15,4 +15,9 @@
     <ProjectReference Include="..\GraphQL.TMS.Domain\GraphQL.TMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\DepartmentManagement\Command\" />
+    <Folder Include="Features\JopManagement\Command\" />
+  </ItemGroup>
+
 </Project>

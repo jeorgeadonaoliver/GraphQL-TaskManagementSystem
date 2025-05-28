@@ -3,8 +3,15 @@ using GraphQL.TMS.Application;
 using GraphQL.TMS.Api.GraphQL.queries;
 using GraphQL.TMS.Api.Endpoints;
 using GraphQL.TMS.Api.GraphQL.mutations;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, services, configuration) =>
+    configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext());
 
 // Add services to the container.
 builder.Services.AddPersistenceService(builder.Configuration);
@@ -21,7 +28,8 @@ builder.Services
     .AddQueryType( d => d.Name("Query"))
     .AddMutationType(s => s.Name("Mutation"))
     .AddTypeExtension<EmployeeQuery>()
-    .AddTypeExtension<EmployeeMutation>();
+    .AddTypeExtension<EmployeeMutation>()
+    .AddTypeExtension<DepartmentQuery>();
 
 
 var app = builder.Build();
@@ -33,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();
+
 app.MapGraphQL();
 
 app.UseHttpsRedirection();
@@ -42,6 +52,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapEmployeeEndpoints();
+app.MapDepartmentEndpoints();
 
 
 app.Run();

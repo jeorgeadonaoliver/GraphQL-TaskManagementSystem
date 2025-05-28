@@ -19,8 +19,7 @@ namespace GraphQL.TMS.Persistence
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-
-            //services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             //services.AddScoped<IEmployeeProjectsRepository, EmployeeProjectRepository>();
             //services.AddScoped<IJobRepository, JobRepository>();
             //services.AddScoped<IProjectRepository, ProjectRepository>();
